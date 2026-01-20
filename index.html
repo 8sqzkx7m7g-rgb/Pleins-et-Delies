@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Téléchargement et redirection</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+      background: #f0f0f0;
+      flex-direction: column;
+      text-align: center;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Votre téléchargement va commencer…</h1>
+<p>Vous allez être redirigé vers Pleins-et-Delies.fr</p>
+<button id="downloadBtn">Télécharger le PDF et continuer</button>
+
+<script>
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    // Créer un lien invisible pour le téléchargement
+    const link = document.createElement('a');
+    link.href = 'edouard.dupont.pdf'; // ton PDF
+    link.download = 'edouard.dupont.pdf';
+    document.body.appendChild(link);
+    link.click(); // déclenche le téléchargement
+    document.body.removeChild(link);
+
+    // Redirection après 500ms pour laisser le téléchargement commencer
+    setTimeout(() => {
+      window.location.href = 'https://www.pleins-et-delies.fr';
+    }, 500);
+  });
+</script>
+
+</body>
+</html>
